@@ -47,7 +47,7 @@ bool myStack::push(int value) {
 
 int myStack::pop() {
     if (numElements == 0) {
-        cout << "Stack Empty" << endl;
+        cout << "Stack is Empty" << endl;
         return -1;
     } else {
         numElements--;
