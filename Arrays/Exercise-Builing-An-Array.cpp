@@ -6,11 +6,11 @@ class Array {
 
     private:
         int count;
-        int items[];
+        int * items;
 
     public:
         Array(int length) {
-            items[length];
+            items = new int[length];
         }
 
         void print() {
@@ -21,10 +21,16 @@ class Array {
         }
 
         void insert(int item) {
+            if (count == sizeof(items)/sizeof(items[0])) {
+                return;
+            }
             items[count++] = item;
         }
 
         void remove(int index) {
+            if (count == 0) {
+                return;
+            }
             for (int i = index; i < count; i++) {
                 items[i] = items[i + 1];
             }
