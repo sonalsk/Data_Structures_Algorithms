@@ -38,7 +38,7 @@ class Array {
         }
 
         int indexOf(int item) {
-            // If we find, return index
+            
             for (int i = 0;i < count; i++) {
                 if (items[i] == item) {
                     return i;
