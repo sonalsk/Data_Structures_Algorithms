@@ -105,7 +105,6 @@ int main() {
     cout << "Front: " << q.getFront() << " Back: " << q.getBack() << endl;
 
     q.dequeue();
-    q.dequeue();
 
     q.showqueue();
     cout << "Front: " << q.getFront() << " Back: " << q.getBack() << endl;
