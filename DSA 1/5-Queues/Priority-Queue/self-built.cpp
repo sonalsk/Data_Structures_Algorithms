@@ -18,6 +18,7 @@ class PriorityQueue {
         int getBack();
         void enqueue(int);
         int dequeue();
+        int dequeueBack();
         int getSize();
         void showqueue();
 };
@@ -59,7 +60,7 @@ void PriorityQueue::enqueue(int value) {
     }
 
     int i;
-    for (i = numElements - 1; i >= 0; i++) {
+    for (i = numElements - 1; i >= 0; i--) {
         if (queueArr[i] > value) {
             queueArr[i + 1] = queueArr[i];
         }
@@ -85,6 +86,13 @@ int PriorityQueue::dequeue() {
     return tmp;
 }
 
+int PriorityQueue::dequeueBack() {
+    if (isEmpty()) {
+        return -1;
+    }
+    return queueArr[--numElements];
+}
+
 int PriorityQueue::getSize() {
     return numElements;
 }
@@ -102,9 +110,15 @@ void PriorityQueue::showqueue() {
 
 int main() {
     PriorityQueue q(5);
-    q.enqueue(30);
+    q.enqueue(50);
     q.enqueue(20);
+    q.enqueue(10);
+    q.enqueue(40);
+    q.enqueue(30);
 
+    q.showqueue();
+
+    q.dequeueBack();
     q.showqueue();
 }
  

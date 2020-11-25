@@ -28,6 +28,9 @@ int main() {
 
     showpq(queue);
 
+    queue.pop();
+    showpq(queue);
+
     priority_queue <int, vector<int>, greater<int>> gquiz; 
     gquiz.push(20); 
     gquiz.push(30); 
@@ -36,5 +39,7 @@ int main() {
 
     showpq(gquiz);
 
+    gquiz.pop();
+    showpq(gquiz);
     return 0;
 }
