@@ -1,5 +1,6 @@
 #include <iostream>
 #include <forward_list>
+#include <list>
 
 using namespace std;
 
@@ -24,12 +25,11 @@ int main() {
     myList.unique();
     myList.sort();
     myList.reverse();
-
+    
     for (int x: myList) {
         cout << x << " ";
     }
     cout << endl;
-    
     
     
     return 0;

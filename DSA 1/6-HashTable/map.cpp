@@ -5,7 +5,7 @@ using namespace std;
 
 int main() {
     map <int, string> employees;
-    map<int, string>::iterator itr;
+    map <int, string>::iterator itr;
 
     // insert
     employees[2] = "ram";
@@ -13,7 +13,9 @@ int main() {
     employees[2] = "ramu";
     employees.insert(pair<int, string>(1, "mohan"));
 
-    employees.erase(1);
+    // employees = {{2, "ram"}, {3, "shaam"}};
+
+    // employees.erase(1);
 
     // display
     for (itr = employees.begin(); itr != employees.end(); ++itr) { 

@@ -8,6 +8,10 @@ class Stack {
         int count;
         
     public:
+        Stack() {
+            count = 0;
+        }
+        
         void push(int element) {
             if (count == sizeof(items)/sizeof(items[0])) {
                 return;
