@@ -20,7 +20,6 @@ class myQueue {
         int dequeue();
         int getSize();
         void showqueue();
-        void print();
 };
 
 myQueue::myQueue(int size) {
@@ -41,7 +40,7 @@ int myQueue::getFront() {
         return -1;
     }
     else {
-        return queueArr[front];
+        return queueArr[front % capacity];
     }
 }
 
@@ -50,7 +49,7 @@ int myQueue::getBack() {
         return -1;
     }
     else {
-        return queueArr[back];
+        return queueArr[back % capacity];
     }
 }
 
@@ -58,9 +57,7 @@ void myQueue::enqueue(int value) {
     if (numElements == capacity) {
         return;
     }
-    back = (back + 1) % capacity;
-    queueArr[back] = value;
-    
+    queueArr[++back % capacity] = value;
     numElements++;
 }
 
@@ -68,12 +65,9 @@ int myQueue::dequeue() {
     if (isEmpty()) {
         return -1;
     }
-    
-    int tmp = queueArr[front];
-    queueArr[front] = 0;
-    front = (front + 1) % capacity;
-
     numElements--;
+    int tmp = queueArr[front % capacity];
+    front++;
     return tmp;
 }
 
@@ -82,21 +76,13 @@ int myQueue::getSize() {
 }
 
 void myQueue::showqueue() {
-    cout << "Real Queue: ";
     int i = front;
     int count = 0;
+    
     while (count != numElements) {
         cout << queueArr[i % capacity] << " ";
-        i++;
         count++;
-    }
-    cout << endl;
-}
-
-void myQueue::print() {
-    cout << "Array View: ";
-    for (int i = 0; i <capacity; i++) {
-        cout << queueArr[i] << " ";
+        i++;
     }
     cout << endl;
 }
@@ -108,39 +94,24 @@ int main() {
     q.enqueue(30);
     q.enqueue(40);
     q.enqueue(50);
-    q.enqueue(50);
 
     q.showqueue();
-    q.print();
-    cout << "Front: " << q.getFront() << " Back: " << q.getBack() << endl << endl;
+    cout << "Front: " << q.getFront() << " Back: " << q.getBack() << endl;
 
-    q.dequeue();
-    q.dequeue();
     q.dequeue();
 
     q.showqueue();
-    q.print();
-    cout << "Front: " << q.getFront() << " Back: " << q.getBack() << endl << endl;
+    cout << "Front: " << q.getFront() << " Back: " << q.getBack() << endl;
 
-    q.enqueue(70);
     q.enqueue(80);
-    q.enqueue(90);
-    
+
+    q.showqueue();
+    cout << "Front: " << q.getFront() << " Back: " << q.getBack() << endl;
+
     q.dequeue();
+    // q.enqueue(77);
 
     q.showqueue();
-    q.print();
-    cout << "Front: " << q.getFront() << " Back: " << q.getBack() << endl << endl;
-    
-    q.enqueue(900);
-    
-    q.showqueue();
-    q.print();
-    cout << "Front: " << q.getFront() << " Back: " << q.getBack() << endl << endl;
+    cout << "Front: " << q.getFront() << " Back: " << q.getBack() << endl;
 
-    // q.showqueue();
-    // q.print();
-
-
-    cout << q.getBack() << endl;
 }

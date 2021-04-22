@@ -210,7 +210,7 @@ bool BinarySearchTree::validate(Node * node, int minn, int maxx) {
     }
     
     return validate(node->leftChild, minn, node->value - 1) &&
-    validate(node->rightChild, node->value + 1, maxx);
+           validate(node->rightChild, node->value + 1, maxx);
 }
 
 void getNodes(Node * node, int k, vector<int> &nodes) {
