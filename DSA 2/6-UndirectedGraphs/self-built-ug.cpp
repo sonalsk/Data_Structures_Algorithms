@@ -67,6 +67,13 @@ class WeightedGraph {
         return false;
     }
 
+    Node * findParent(unordered_map <Node *, Node *> parent, Node * i) {
+        if (parent[i] == nullptr) {
+            return i;
+        }
+        return findParent(parent, parent[i]);
+    }
+
     public:
         void addNode(string);
         void addEdge(string, string, int);
@@ -77,10 +84,71 @@ class WeightedGraph {
         bool hasCycle();
         bool containsNode(string);
         WeightedGraph * prims();
+        bool UnionFind();
+        WeightedGraph * kruskal();
 };
+
+bool WeightedGraph::UnionFind() {
+    unordered_map <Node *, Node *> parent;
+
+    for (auto node: nodes) {
+        parent[node.second] = nullptr;
+    }
+
+    for (auto node: nodes) {
+        for (auto edge: adjList[node.second]) {
+            Node * x = findParent(parent, edge->from);
+            Node * y = findParent(parent, edge->to);
+            
+            if (x == y) {
+                return true;
+            }
+
+            parent[y] = x;
+        }
+    }
+    return false;
+}
 
 bool WeightedGraph::containsNode(string label) {
     return nodes.find(label) != nodes.end();
+}
+
+WeightedGraph * WeightedGraph::kruskal() {
+    WeightedGraph * tree = new WeightedGraph();
+    if (nodes.empty()) {
+        return tree;
+    }
+
+    unordered_map <Node *, Node *> parent;
+
+    for (auto node: nodes) {
+        parent[node.second] = nullptr;
+    }
+
+    for (auto node: nodes) {
+        for (auto edge: adjList[node.second]) {
+            Node * x = findParent(parent, edge->from);
+            Node * y = findParent(parent, edge->to);
+
+            if (!tree->containsNode(x->label)) {
+                tree->addNode(x->label);
+            }
+            if (!tree->containsNode(y->label)) {
+                tree->addNode(y->label);
+            }
+            
+            if (x == y) {
+                continue;
+            }
+            else {
+                tree->addEdge(x->label, y->label, edge->weight);
+            }
+
+            parent[y] = x;
+        }
+    }
+    return tree;
 }
 
 WeightedGraph * WeightedGraph::prims() {
@@ -307,15 +375,12 @@ int main() {
     graph->addNode("A");
     graph->addNode("B");
     graph->addNode("C");
-    graph->addNode("D");
 
     graph->addEdge("A", "B", 3);
-    graph->addEdge("B", "D", 4);
-    graph->addEdge("C", "D", 5);
-    graph->addEdge("A", "C", 1);
-    graph->addEdge("B", "C", 2);
+    graph->addEdge("B", "C", 4);
+    graph->addEdge("A", "C", 5);
 
-    WeightedGraph * tree = graph->prims();
+    WeightedGraph * tree = graph->kruskal();
     tree->print();
 
     return 0;
