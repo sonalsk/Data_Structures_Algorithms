@@ -33,6 +33,7 @@ void getAnagrams(string str) {
 }
 
 int main() {
+    // anagram : god, gdo, dog, dgo, odg, ogd
     string str = "god";
     getAnagrams(str);
     return 0;
