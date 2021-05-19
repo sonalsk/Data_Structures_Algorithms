@@ -313,10 +313,12 @@ void WeightedGraph::Dijkstra(string from, string to) {
 
             if (visited.find(edge->to) == visited.end()) {
                 if (distances.find(edge->to) != distances.end()) {
+                    
                     if (edge->weight + distances[fromNode] < distances[edge->to]) {
                         distances[edge->to] = edge->weight + distances[fromNode];
                         previousNode[edge->to] = fromNode;
                     }
+
                 }
                 else {
                     distances[edge->to] = edge->weight;
