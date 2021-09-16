@@ -22,3 +22,10 @@ This repository contains the code of various Data Structures and Algorithms in C
 ## DSA 3
 1. Searching
 2. Sorting
+
+## DSA $
+1. Recursion
+2. Backtracking
+3. DP
+
+## Recursion in C++
