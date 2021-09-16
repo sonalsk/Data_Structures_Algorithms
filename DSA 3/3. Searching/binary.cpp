@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int binarySearchRecP(int arr[], int low, int high, int item) {
+int binarySearch(int arr[], int low, int high, int item) {
     if (high < low) {
         return -1;
     }
@@ -14,14 +14,14 @@ int binarySearchRecP(int arr[], int low, int high, int item) {
     }
 
     if (item < arr[mid]) {
-        return binarySearchRecP(arr, low, mid - 1, item);
+        return binarySearch(arr, low, mid - 1, item);
     }
 
-    return binarySearchRecP(arr, mid + 1, high, item);
+    return binarySearch(arr, mid + 1, high, item);
 }
 
 int binarySearchRec(int arr[], int n, int item) {
-    return binarySearchRecP(arr, 0, n - 1, item);
+    return binarySearch(arr, 0, n - 1, item);
 }
 
 int binarySearch(int arr[], int n, int item) {
@@ -47,7 +47,7 @@ int binarySearch(int arr[], int n, int item) {
 
 int main() {
     int n = 5;
-    int arr[n] = {1, 3, 5, 6, 7};
+    int arr[n] = {1, 3, 4, 5, 6, 7};
 
     int index = binarySearchRec(arr, n, 6);
     cout << index << endl;
